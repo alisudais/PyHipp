@@ -11,19 +11,19 @@ class Waveform(DPT.DPObject):
     argsList = []  # these is where arguments used in the creation of the object are listed
     level = 'channel'  # this is the level that this object will be created in
 
-    def __init__(self, *args, **kwargs):
-        DPT.DPObject.__init__(self, *args, **kwargs)
+def __init__(self, *args, **kwargs):
+    DPT.DPObject.__init__(self, *args, **kwargs)
 
-    def create(self, *args, **kwargs):
+def create(self, *args, **kwargs):
         # this function will be called once to create this waveform object
-        pwd = os.path.normpath(os.getcwd());
+    pwd = os.path.normpath(os.getcwd());
         # 'channelxxx, xxx is the number of the channel'
-        self.channel_filename = [os.path.basename(pwd)]  
-        template_filename = os.path.join(
-        DPT.levels.resolve_level('day', self.channel_filename[0]),
-        'mountains', self.channel_filename[0], 'output', 'templates.hkl')
-        templates = hkl.load(template_filename)
-        self.data = [np.squeeze(templates)]
+    self.channel_filename = [os.path.basename(pwd)]  
+    template_filename = os.path.join(
+    DPT.levels.resolve_level('day', self.channel_filename[0]),
+    'mountains', self.channel_filename[0], 'output', 'templates.hkl')
+    templates = hkl.load(template_filename)
+    self.data = [np.squeeze(templates)]
 
         # one neat property of Object-Oriented Programming (OOP) structure is that 
         # you can create some field-value pairs that can be called and updated 
@@ -57,24 +57,24 @@ class Waveform(DPT.DPObject):
         
         # check on the mountainsort template data and create a DPT object accordingly
         # Example:
-        if self.data:
+    if self.data:
             # create object if data is not empty
-            DPT.DPObject.create(self, *args, **kwargs)
-        else:
+        DPT.DPObject.create(self, *args, **kwargs)
+    else:
             # create empty object if data is empty
-            DPT.DPObject.create(self, dirs=[], *args, **kwargs)            
+        DPT.DPObject.create(self, dirs=[], *args, **kwargs)            
         
-    def append(self, wf):
+def append(self, wf):
         # this function will be called by processDirs to append the values of certain fields
         # from an extra object (wf) to this object
         # It is useful to store the information of the objects for panning through in the future
-        DPT.DPObject.append(self, wf)  # append self.setidx and self.dirs
+    DPT.DPObject.append(self, wf)  # append self.setidx and self.dirs
         # .........................................
         # ..................code...................
         # .........................................
         
-    def plot(self, i = None, ax = None, getNumEvents = False, getLevels = False,\
-             getPlotOpts = False, overlay = False, **kwargs):
+def plot(self, i = None, ax = None, getNumEvents = False, getLevels = False,\
+    getPlotOpts = False, overlay = False, **kwargs):
         # this function will be called in different instances in PanGUI.main
         # Eg. initially creating the window, right-clicking on the axis and click on any item
         # input argument:   'i' is the current index in the data list to plot 
@@ -87,20 +87,20 @@ class Waveform(DPT.DPObject):
         # plotOpts is a dictionary to store the information that will be shown 
         # in the menu evoked by right-clicking on the axis after the window is created by PanGUI.create_window
         # for more information, please check in PanGUI.main.create_menu
-        plotOpts = {'PlotType': DPT.objects.ExclusiveOptions(['Channel', 'Array'], 0), \
-            'LabelsOff': False, 'TitleOff': False, 'TicksOff': False}
+    plotOpts = {'PlotType': DPT.objects.ExclusiveOptions(['Channel', 'Array'], 0), \
+    'LabelsOff': False, 'TitleOff': False, 'TicksOff': False}
 
         # update the plotOpts based on kwargs, these two lines are important to
         # receive the input arguments and act accordingly
-        for (k, v) in plotOpts.items():
-                    plotOpts[k] = kwargs.get(k, v)  
+    for (k, v) in plotOpts.items():
+        plotOpts[k] = kwargs.get(k, v)  
                     
-        plot_type = plotOpts['PlotType'].selected()  # this variable will store the selected item in 'Type'
+    plot_type = plotOpts['PlotType'].selected()  # this variable will store the selected item in 'Type'
 
-        if getPlotOpts:  # this will be called by PanGUI.main to obtain the plotOpts to create a menu once we right-click on the axis
-            return plotOpts 
+    if getPlotOpts:  # this will be called by PanGUI.main to obtain the plotOpts to create a menu once we right-click on the axis
+        return plotOpts 
 
-        if getNumEvents:  
+    if getNumEvents:  
             # this will be called by PanGUI.main to return two values: 
             # first value is the total number of items to pan through, 
             # second value is the current index of the item to plot
@@ -108,40 +108,40 @@ class Waveform(DPT.DPObject):
             # ..................code...................
             # .........................................
             
-            return  # please return two items here: <total-number-of-items-to-plot>, <current-item-index-to-plot>
+        return  # please return two items here: <total-number-of-items-to-plot>, <current-item-index-to-plot>
                 
-        if ax is None:
-            ax = plt.gca()
+    if ax is None:
+        ax = plt.gca()
 
-        if not overlay:
-            ax.clear()
+    if not overlay:
+        ax.clear()
         
         ######################################################################
         #################### start plotting ##################################
         ######################################################################
-        if plot_type == 'Channel':  # plot in channel level
+    if plot_type == 'Channel':  # plot in channel level
             # plot the mountainsort data according to the current index 'i'
             # .........................................
             # ..................code...................
             # .........................................
-            pass  # you may delete this line
+        pass  # you may delete this line
     
         ########labels###############
-        if not plotOpts['TitleOff']:  # if TitleOff icon in the right-click menu is clicked
+    if not plotOpts['TitleOff']:  # if TitleOff icon in the right-click menu is clicked
             # set the title in this format: channelxxx, fill with zeros if the channel number is not three-digit
             # .........................................
             # ..................codes..................
             # .........................................
-            pass  # you may delete this line
+        pass  # you may delete this line
             
-        if not plotOpts['LabelsOff']:  # if LabelsOff icon in the right-click menu is clicked
+    if not plotOpts['LabelsOff']:  # if LabelsOff icon in the right-click menu is clicked
             # set the xlabel and ylabel
             # .........................................
             # ..................code...................
             # .........................................
-            pass  # you may delete this line
+        pass  # you may delete this line
             
-        return ax
+    return ax
     
     
     
