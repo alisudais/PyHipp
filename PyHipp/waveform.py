@@ -17,7 +17,7 @@ def __init__(self, *args, **kwargs):
 def create(self, *args, **kwargs):
         # this function will be called once to create this waveform object
 	pwd = os.path.normpath(os.getcwd());
-	self.channel_filename = [os.path.basename(pwd)] 
+	self.channel_filename=[os.path.basename(pwd)]
 	template_filename = os.path.join(DPT.levels.resolve_level('day', self.channel_filename[0]),'mountains', self.channel_filename[0], 'output', 'templates.hkl')
 	templates = hkl.load(template_filename)
 	self.data = [np.squeeze(templates)]        
@@ -37,12 +37,11 @@ def append(self, wf):
         # It is useful to store the information of the objects for panning through in the future
 	DPT.DPObject.append(self, wf)
 	self.data = self.data + wf.data
-
 	    # append self.setidx and self.dirs
         # .........................................
         # ..................code...................
         # .........................................
-		   
+        
 def plot(self, i = None, ax = None, getNumEvents = False, getLevels = False, getPlotOpts = False, overlay = False, **kwargs):
         # this function will be called in different instances in PanGUI.main
         # Eg. initially creating the window, right-clicking on the axis and click on any item
