@@ -48,14 +48,14 @@ class Waveform(DPT.DPObject):
         templates = hkl.load(template_filename)
         self.data = [np.squeeze(templates)]
         
-        '''
+        
         aname = DPT.levels.normpath(os.path.dirname(pwd))
         
         self.array_dict = dict()
         self.array_dict[aname] = 0
         self.numSets = 1
         self.current_plot_type = None
-        '''
+        
 
         
         # check on the mountainsort template data and create a DPT object accordingly
@@ -77,9 +77,9 @@ def append(self, wf):
         # from an extra object (wf) to this object
         # It is useful to store the information of the objects for panning through in the future 
 
-		#for ar in wf.array_dict:
-		#self.array_dict[ar] = self.numSets
-		#self.numSets += 1
+	for ar in wf.array_dict:
+        self.array_dict[ar] = self.numSets
+	self.numSets += 1
 
         
 def plot(self, i = None, ax = None, getNumEvents = False, getLevels = False,\
