@@ -48,14 +48,13 @@ class Waveform(DPT.DPObject):
         templates = hkl.load(template_filename)
         self.data = [np.squeeze(templates)]
         
-        
         aname = DPT.levels.normpath(os.path.dirname(pwd))
         
         self.array_dict = dict()
         self.array_dict[aname] = 0
         self.numSets = 1
         self.current_plot_type = None
-        
+
 
         
         # check on the mountainsort template data and create a DPT object accordingly
@@ -70,15 +69,18 @@ class Waveform(DPT.DPObject):
             DPT.DPObject.create(self, dirs=[], *args, **kwargs)            
 
         
-def append(self, wf):
-    DPT.DPObject.append(self, wf) 
-    self.data = self.data + wf.data
-    for ar in wf.array_dict:
-        self.array_dict[ar] = self.numSets
-    self.numSets += 1
+    def append(self, wf):
+        # this function will be called by processDirs to append the values of certain fields
+        # from an extra object (wf) to this object
+        # It is useful to store the information of the objects for panning through in the future
+        DPT.DPObject.append(self, wf)
+        self.data = self.data + wf.data
+        for ar in wf.array_dict:
+            self.array_dict[ar] = self.numSets
+        self.numSets += 1
 
-    
-def plot(self, i = None, ax = None, getNumEvents = False, getLevels = False,\
+        
+    def plot(self, i = None, ax = None, getNumEvents = False, getLevels = False,\
              getPlotOpts = False, overlay = False, **kwargs):
         # this function will be called in different instances in PanGUI.main
         # Eg. initially creating the window, right-clicking on the axis and click on any item
