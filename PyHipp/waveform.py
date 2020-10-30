@@ -75,9 +75,9 @@ def append(self, wf):
     self.data = self.data + wf.data
     for ar in wf.array_dict:
         self.array_dict[ar] = self.numSets
-	self.numSets += 1
+    self.numSets += 1
 
-        
+    
 def plot(self, i = None, ax = None, getNumEvents = False, getLevels = False,\
              getPlotOpts = False, overlay = False, **kwargs):
         # this function will be called in different instances in PanGUI.main
