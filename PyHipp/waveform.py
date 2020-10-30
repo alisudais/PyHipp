@@ -35,7 +35,8 @@ def append(self, wf):
         # this function will be called by processDirs to append the values of certain fields
         # from an extra object (wf) to this object
         # It is useful to store the information of the objects for panning through in the future
-	DPT.DPObject.append(self, wf)  # append self.setidx and self.dirs
+	DPT.DPObject.append(self, wf)
+	self.data = self.data + wf.data  # append self.setidx and self.dirs
         # .........................................
         # ..................code...................
         # .........................................
