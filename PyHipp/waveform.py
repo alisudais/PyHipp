@@ -74,10 +74,10 @@ class Waveform(DPT.DPObject):
         # this function will be called by processDirs to append the values of certain fields
         # from an extra object (wf) to this object
         # It is useful to store the information of the objects for panning through in the future
-        DPT.DPObject.append(self, wf)
-        
-        '''
-        self.data = self.data + wf.data
+        DPT.DPObject.append(self, wf) 
+		self.data = self.data + wf.data
+		
+		'''
         for ar in wf.array_dict:
             self.array_dict[ar] = self.numSets
         self.numSets += 1
