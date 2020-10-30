@@ -22,7 +22,7 @@ def create(self, *args, **kwargs):
 	self.array_dict[aname] = 0
 	self.numSets = 1
 	self.current_plot_type = None
-	self.channel_filename=[os.path.basename(aname)]
+	self.channel_filename= aname
 	template_filename = os.path.join(DPT.levels.resolve_level('day', self.channel_filename[0]),'mountains', self.channel_filename[0], 'output', 'templates.hkl')
 	templates = hkl.load(template_filename)
 	self.data = [np.squeeze(templates)]        
